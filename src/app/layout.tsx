@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import './globals.css';
 import './motion.css';
+import './responsive.css';
 
 export const metadata: Metadata = {
  title: 'nowman',

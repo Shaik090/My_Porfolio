@@ -1,0 +1,17 @@
+[
+  {
+    "width": 390,
+    "headerHeight": 69,
+    "projectColumns": 1,
+    "imageResources": [
+      "/images/nowman-hero-mobile.webp",
+      "/images/nowman-about-mobile.webp"
+    ],
+    "runtimeErrors": 0,
+    "checks": "navigation, anchors, active state, targets, galleries, zoom, certificates, form and overflow passed"
+  },
+  {
+    "reducedMotion": "visible content, no hero animation",
+    "shortLandscapeMenu": "scrollable and keyboard accessible"
+  }
+]

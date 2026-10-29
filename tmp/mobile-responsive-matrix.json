@@ -1,0 +1,94 @@
+[
+  {
+    "width": 320,
+    "headerHeight": 69,
+    "projectColumns": 1,
+    "imageResources": [
+      "/images/nowman-hero-mobile.webp",
+      "/images/nowman-about-mobile.webp"
+    ],
+    "runtimeErrors": 0,
+    "checks": "navigation, anchors, active state, targets, galleries, zoom, certificates, form and overflow passed"
+  },
+  {
+    "width": 360,
+    "headerHeight": 69,
+    "projectColumns": 1,
+    "imageResources": [
+      "/images/nowman-hero-mobile.webp",
+      "/images/nowman-about-mobile.webp"
+    ],
+    "runtimeErrors": 0,
+    "checks": "navigation, anchors, active state, targets, galleries, zoom, certificates, form and overflow passed"
+  },
+  {
+    "width": 390,
+    "headerHeight": 69,
+    "projectColumns": 1,
+    "imageResources": [
+      "/images/nowman-hero-mobile.webp",
+      "/images/nowman-about-mobile.webp"
+    ],
+    "runtimeErrors": 0,
+    "checks": "navigation, anchors, active state, targets, galleries, zoom, certificates, form and overflow passed"
+  },
+  {
+    "width": 430,
+    "headerHeight": 69,
+    "projectColumns": 1,
+    "imageResources": [
+      "/images/nowman-hero-mobile.webp",
+      "/images/nowman-about-mobile.webp"
+    ],
+    "runtimeErrors": 0,
+    "checks": "navigation, anchors, active state, targets, galleries, zoom, certificates, form and overflow passed"
+  },
+  {
+    "width": 600,
+    "headerHeight": 69,
+    "projectColumns": 1,
+    "imageResources": [
+      "/images/nowman-hero-mobile.webp",
+      "/images/nowman-about-mobile.webp"
+    ],
+    "runtimeErrors": 0,
+    "checks": "navigation, anchors, active state, targets, galleries, zoom, certificates, form and overflow passed"
+  },
+  {
+    "width": 768,
+    "headerHeight": 69,
+    "projectColumns": 1,
+    "imageResources": [
+      "/images/nowman-hero-mobile.webp",
+      "/images/nowman-about-mobile.webp"
+    ],
+    "runtimeErrors": 0,
+    "checks": "navigation, anchors, active state, targets, galleries, zoom, certificates, form and overflow passed"
+  },
+  {
+    "width": 1024,
+    "headerHeight": 69,
+    "projectColumns": 2,
+    "imageResources": [
+      "/images/nowman-hero-mobile.webp",
+      "/images/nowman-about-mobile.webp"
+    ],
+    "runtimeErrors": 0,
+    "checks": "navigation, anchors, active state, targets, galleries, zoom, certificates, form and overflow passed"
+  },
+  {
+    "width": 1440,
+    "headerHeight": 83,
+    "projectColumns": 2,
+    "imageResources": [
+      "/images/nowman-hero-face-v2.png",
+      "/images/nowman-about-face-v2.png"
+    ],
+    "runtimeErrors": 0,
+    "checks": "navigation, anchors, active state, targets, galleries, zoom, certificates, form and overflow passed"
+  },
+  {
+    "reducedMotion": "visible content, no hero animation",
+    "shortLandscapeMenu": "scrollable and keyboard accessible"
+  }
+]

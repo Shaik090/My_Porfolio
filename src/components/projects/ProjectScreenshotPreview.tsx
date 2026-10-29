@@ -9,6 +9,7 @@ type Screenshot = { src: string; title: string; description: string };
 export default function ProjectScreenshotPreview({ title, screenshots }: { title: string; screenshots: readonly Screenshot[] }) {
   const [open, setOpen] = useState(false);
   const [index, setIndex] = useState(0);
+  const [loadedScreen, setLoadedScreen] = useState('');
   const thumbnails = useRef<HTMLDivElement>(null);
   const screen = screenshots[index];
   const move = (direction: number) => setIndex(current => (current + direction + screenshots.length) % screenshots.length);
@@ -51,7 +52,7 @@ export default function ProjectScreenshotPreview({ title, screenshots }: { title
       if (event.clientX < bounds.left || event.clientX > bounds.right || event.clientY < bounds.top || event.clientY > bounds.bottom) event.currentTarget.close();
     }}>
       {open && <div className="project-proof-content"><div className="project-proof-heading"><h3 id="project-proof-title">{title} / Actual app screenshot</h3><button type="button" aria-label="Close app screenshot" onClick={() => dialog.current?.close()}><X size={22}/></button></div>
-        <div className="project-proof-stage"><Image key={screen.src} src={screen.src} alt={`${title}: ${screen.title}. ${screen.description}`} fill sizes="(max-width:760px) 75vw, 320px" loading="eager" quality={95}/></div>
+        <div className="project-proof-stage" aria-busy={loadedScreen !== screen.src}>{loadedScreen !== screen.src && <span className="project-proof-loading" role="status">Loading screenshot preview...</span>}<Image key={screen.src} src={screen.src} alt={`${title}: ${screen.title}. ${screen.description}`} fill sizes="(max-width:760px) 75vw, 320px" loading="eager" quality={95} onLoad={() => setLoadedScreen(screen.src)}/></div>
         <div className="project-proof-caption"><div aria-live="polite" aria-atomic="true"><h4>{screen.title}</h4><p>{screen.description}</p></div><div className="project-proof-navigation"><button type="button" aria-label={`Previous ${title} screenshot`} onClick={() => move(-1)}><ArrowLeft size={18}/></button><span>{index + 1} / {screenshots.length}</span><button type="button" aria-label={`Next ${title} screenshot`} onClick={() => move(1)}><ArrowRight size={18}/></button></div></div>
         <div className="project-proof-thumbnails" ref={thumbnails} role="group" aria-label={`${title} screenshot thumbnails`}>{screenshots.map((item, i) => <button type="button" key={item.src} aria-label={`Show ${title} ${item.title}`} aria-pressed={i === index} onClick={() => setIndex(i)}><Image src={item.src.replace('.webp','-thumb.webp')} alt="" width={70} height={150}/><span>{item.title}</span></button>)}</div>
         <a href={screen.src} target="_blank" rel="noopener noreferrer" aria-label="Open full-size screenshot (opens in a new tab)">Open full-size screenshot <ArrowUpRight size={16}/></a>

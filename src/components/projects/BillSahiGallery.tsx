@@ -3,7 +3,7 @@
 import Image from 'next/image';
 import { useEffect, useRef, useState } from 'react';
 import { AnimatePresence, m, useReducedMotion } from 'motion/react';
-import { ArrowLeft, ArrowRight, Expand, Images, X } from 'lucide-react';
+import { ArrowLeft, ArrowRight, Expand, Images, X, ZoomIn, ZoomOut } from 'lucide-react';
 import { billsahiImagePath, billsahiScreenshots } from '../../data/billsahi-screenshots';
 import './billsahi-gallery.css';
 
@@ -41,12 +41,14 @@ export default function BillSahiGallery({ open, onClose, openingPosition }: { op
 function ScreenshotViewer({ onClose }: { onClose: () => void }) {
   const [index, setIndex] = useState(0);
   const [large, setLarge] = useState(false);
+  const [zoomed, setZoomed] = useState(false);
   const [loadedLarge, setLoadedLarge] = useState('');
   const dialog = useRef<HTMLDialogElement>(null);
   const thumbnails = useRef<HTMLDivElement>(null);
   const reduced = useReducedMotion();
   const screen = billsahiScreenshots[index];
-  const move = (direction: number) => setIndex(current => (current + direction + billsahiScreenshots.length) % billsahiScreenshots.length);
+  const largeImageKey = `${screen.file}:${zoomed ? 'zoom' : 'fit'}`;
+  const move = (direction: number) => { setZoomed(false); setIndex(current => (current + direction + billsahiScreenshots.length) % billsahiScreenshots.length); };
 
   useEffect(() => {
     // Scroll only the thumbnail strip; never move the document to change images.
@@ -74,7 +76,11 @@ function ScreenshotViewer({ onClose }: { onClose: () => void }) {
     <button type="button" aria-label={lightbox ? 'Next screenshot in larger viewer' : 'Next BillSahi screenshot'} onClick={() => move(1)}><ArrowRight size={19}/></button>
   </div>;
 
-  return <section className="bs-gallery" aria-labelledby="bs-gallery-title">
+  return <section className="bs-gallery" aria-labelledby="bs-gallery-title" onKeyDown={event => {
+    if (large || !['ArrowLeft', 'ArrowRight'].includes(event.key)) return;
+    event.preventDefault();
+    move(event.key === 'ArrowLeft' ? -1 : 1);
+  }}>
     <div className="bs-gallery-heading"><div><span className="bs-gallery-eyebrow"><Images size={14}/> INSIDE BILLSAHI</span><h3 id="bs-gallery-title">A closer look at the web app</h3><p>Five selected screens from the application.</p></div><button type="button" className="bs-gallery-icon" aria-label="Close BillSahi screenshots" onClick={onClose}><X size={20}/></button></div>
     <div className="bs-gallery-browser">
       <div className="bs-browser-toolbar"><span aria-hidden="true"><i/><i/><i/></span><span>BillSahi / Web Application</span><span className="bs-browser-status">SCREENSHOTS</span></div>
@@ -93,7 +99,8 @@ function ScreenshotViewer({ onClose }: { onClose: () => void }) {
       </button>)}
     </div>
     <p className="bs-gallery-note">Web application screens. Account email redacted for privacy. Desktop application under development.</p>
-    <dialog ref={dialog} className="bs-gallery-lightbox" aria-labelledby="bs-lightbox-title" onClose={() => setLarge(false)} onKeyDown={event => {
+    <dialog ref={dialog} className="bs-gallery-lightbox" aria-labelledby="bs-lightbox-title" onClose={() => {setLarge(false);setZoomed(false)}} onKeyDown={event => {
+      if (zoomed && (event.target as HTMLElement).classList.contains('bs-lightbox-image')) return;
       if (event.key === 'ArrowLeft' || event.key === 'ArrowRight') { event.preventDefault(); event.stopPropagation(); move(event.key === 'ArrowLeft' ? -1 : 1); }
       if (event.key === 'Tab') {
         const buttons = event.currentTarget.querySelectorAll<HTMLButtonElement>('button:not(:disabled)');
@@ -108,10 +115,11 @@ function ScreenshotViewer({ onClose }: { onClose: () => void }) {
       if (event.clientX < bounds.left || event.clientX > bounds.right || event.clientY < bounds.top || event.clientY > bounds.bottom) event.currentTarget.close();
     }}>
       {large && <div className="bs-lightbox-content"><div className="bs-lightbox-heading"><div aria-live="polite"><span>BillSahi / Web Application</span><h3 id="bs-lightbox-title">{screen.title}</h3></div><button type="button" className="bs-gallery-icon" aria-label="Close screenshot viewer" onClick={() => dialog.current?.close()}><X size={23}/></button></div>
-        <div className="bs-lightbox-image" aria-busy={loadedLarge !== screen.file}>
-          {loadedLarge !== screen.file && <span className="bs-screenshot-loading" role="status">Loading screenshot preview...</span>}
-          <Image key={screen.file} src={billsahiImagePath(screen.file)} alt={`Full-size BillSahi ${screen.title}`} fill loading="eager" sizes="96vw" quality={95} onLoad={() => setLoadedLarge(screen.file)}/>
+        <div className={'bs-lightbox-image'+(zoomed?' is-zoomed':'')} tabIndex={zoomed?0:undefined} aria-label={zoomed?'Full-size screenshot; swipe or scroll to explore':undefined} aria-busy={loadedLarge !== largeImageKey}>
+          {loadedLarge !== largeImageKey && <span className="bs-screenshot-loading" role="status">Loading screenshot preview...</span>}
+          <Image key={largeImageKey} src={billsahiImagePath(screen.file)} alt={`Full-size BillSahi ${screen.title}`} fill loading="eager" sizes={zoomed?'1920px':'96vw'} quality={95} onLoad={() => setLoadedLarge(largeImageKey)}/>
         </div>
+        <button type="button" className="bs-gallery-larger mobile-screenshot-zoom" aria-pressed={zoomed} onClick={() => setZoomed(!zoomed)}>{zoomed?<ZoomOut size={16}/>:<ZoomIn size={16}/>} {zoomed?'Fit to screen':'Zoom in'}</button>
         {controls(true)}
       </div>}
     </dialog>

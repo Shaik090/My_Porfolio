@@ -1,0 +1,370 @@
+[
+  {
+    "width": 320,
+    "overflow": -15,
+    "header": {
+      "x": 0,
+      "y": 0,
+      "width": 305,
+      "height": 69
+    },
+    "hero": {
+      "x": 20,
+      "y": 69,
+      "width": 265,
+      "height": 1015.171875
+    },
+    "portrait": {
+      "x": 20,
+      "y": 779.171875,
+      "width": 265,
+      "height": 265
+    },
+    "heading": "40px",
+    "projectColumns": "265px",
+    "projectText": "15px",
+    "formText": "16px",
+    "summary": {
+      "x": 41,
+      "y": 2940.8125,
+      "width": 223,
+      "height": 44
+    },
+    "menuButton": {
+      "x": 241,
+      "y": 12,
+      "width": 44,
+      "height": 44
+    },
+    "heroIcon": {
+      "x": 166.015625,
+      "y": 93,
+      "width": 44,
+      "height": 44
+    },
+    "canvas": 0,
+    "animations": 0
+  },
+  {
+    "width": 360,
+    "overflow": -15,
+    "header": {
+      "x": 0,
+      "y": 0,
+      "width": 345,
+      "height": 69
+    },
+    "hero": {
+      "x": 20,
+      "y": 69,
+      "width": 305,
+      "height": 1032.46875
+    },
+    "portrait": {
+      "x": 20,
+      "y": 756.46875,
+      "width": 305,
+      "height": 305
+    },
+    "heading": "41.04px",
+    "projectColumns": "305px",
+    "projectText": "15px",
+    "formText": "16px",
+    "summary": {
+      "x": 41,
+      "y": 2882.40625,
+      "width": 263,
+      "height": 44
+    },
+    "menuButton": {
+      "x": 281,
+      "y": 12,
+      "width": 44,
+      "height": 44
+    },
+    "heroIcon": {
+      "x": 166.015625,
+      "y": 93,
+      "width": 44,
+      "height": 44
+    },
+    "canvas": 0,
+    "animations": 0
+  },
+  {
+    "width": 390,
+    "overflow": -15,
+    "header": {
+      "x": 0,
+      "y": 0,
+      "width": 375,
+      "height": 69
+    },
+    "hero": {
+      "x": 20,
+      "y": 69,
+      "width": 335,
+      "height": 990.765625
+    },
+    "portrait": {
+      "x": 20,
+      "y": 684.765625,
+      "width": 335,
+      "height": 335
+    },
+    "heading": "44.46px",
+    "projectColumns": "335px",
+    "projectText": "15px",
+    "formText": "16px",
+    "summary": {
+      "x": 41,
+      "y": 2805.203125,
+      "width": 293,
+      "height": 44
+    },
+    "menuButton": {
+      "x": 311,
+      "y": 12,
+      "width": 44,
+      "height": 44
+    },
+    "heroIcon": {
+      "x": 166.015625,
+      "y": 93,
+      "width": 44,
+      "height": 44
+    },
+    "canvas": 0,
+    "animations": 0
+  },
+  {
+    "width": 430,
+    "overflow": -15,
+    "header": {
+      "x": 0,
+      "y": 0,
+      "width": 415,
+      "height": 69
+    },
+    "hero": {
+      "x": 20,
+      "y": 69,
+      "width": 375,
+      "height": 1011.09375
+    },
+    "portrait": {
+      "x": 27.5,
+      "y": 680.09375,
+      "width": 360,
+      "height": 360
+    },
+    "heading": "49.02px",
+    "projectColumns": "375px",
+    "projectText": "15px",
+    "formText": "16px",
+    "summary": {
+      "x": 41,
+      "y": 2758.078125,
+      "width": 333,
+      "height": 44
+    },
+    "menuButton": {
+      "x": 351,
+      "y": 12,
+      "width": 44,
+      "height": 44
+    },
+    "heroIcon": {
+      "x": 166.015625,
+      "y": 93,
+      "width": 44,
+      "height": 44
+    },
+    "canvas": 0,
+    "animations": 0
+  },
+  {
+    "width": 600,
+    "overflow": -15,
+    "header": {
+      "x": 0,
+      "y": 0,
+      "width": 585,
+      "height": 69
+    },
+    "hero": {
+      "x": 20,
+      "y": 69,
+      "width": 545,
+      "height": 975.8125
+    },
+    "portrait": {
+      "x": 112.5,
+      "y": 644.8125,
+      "width": 360,
+      "height": 360
+    },
+    "heading": "56px",
+    "projectColumns": "545px",
+    "projectText": "15px",
+    "formText": "16px",
+    "summary": {
+      "x": 41,
+      "y": 2634.890625,
+      "width": 503,
+      "height": 44
+    },
+    "menuButton": {
+      "x": 521,
+      "y": 12,
+      "width": 44,
+      "height": 44
+    },
+    "heroIcon": {
+      "x": 166.015625,
+      "y": 93,
+      "width": 44,
+      "height": 44
+    },
+    "canvas": 0,
+    "animations": 0
+  },
+  {
+    "width": 768,
+    "overflow": -15,
+    "header": {
+      "x": 0,
+      "y": 0,
+      "width": 753,
+      "height": 69
+    },
+    "hero": {
+      "x": 28,
+      "y": 69,
+      "width": 697,
+      "height": 661.109375
+    },
+    "portrait": {
+      "x": 405.3125,
+      "y": 193.546875,
+      "width": 319.671875,
+      "height": 400
+    },
+    "heading": "42px",
+    "projectColumns": "660px",
+    "projectText": "15px",
+    "formText": "16px",
+    "summary": {
+      "x": 67.5,
+      "y": 2114.25,
+      "width": 618,
+      "height": 44
+    },
+    "menuButton": {
+      "x": 681,
+      "y": 12,
+      "width": 44,
+      "height": 44
+    },
+    "heroIcon": {
+      "x": 174.015625,
+      "y": 638.109375,
+      "width": 44,
+      "height": 44
+    },
+    "canvas": 0,
+    "animations": 0
+  },
+  {
+    "width": 1024,
+    "overflow": -15,
+    "header": {
+      "x": 0,
+      "y": 0,
+      "width": 1009,
+      "height": 69
+    },
+    "hero": {
+      "x": 28,
+      "y": 69,
+      "width": 953,
+      "height": 676.03125
+    },
+    "portrait": {
+      "x": 539.71875,
+      "y": 201.015625,
+      "width": 441.265625,
+      "height": 400
+    },
+    "heading": "54.272px",
+    "projectColumns": "468.5px 468.5px",
+    "projectText": "15px",
+    "formText": "16px",
+    "summary": {
+      "x": 48,
+      "y": 1956.140625,
+      "width": 428.5,
+      "height": 44
+    },
+    "menuButton": {
+      "x": 937,
+      "y": 12,
+      "width": 44,
+      "height": 44
+    },
+    "heroIcon": {
+      "x": 174.015625,
+      "y": 653.03125,
+      "width": 44,
+      "height": 44
+    },
+    "canvas": 0,
+    "animations": 0
+  },
+  {
+    "width": 1440,
+    "overflow": -15,
+    "header": {
+      "x": 0,
+      "y": 0,
+      "width": 1425,
+      "height": 83
+    },
+    "hero": {
+      "x": 112.5,
+      "y": 83,
+      "width": 1200,
+      "height": 707.875
+    },
+    "portrait": {
+      "x": 652.5,
+      "y": 175.875,
+      "width": 660,
+      "height": 580
+    },
+    "heading": "73px",
+    "projectColumns": "492px 492px",
+    "projectText": "11px",
+    "formText": "13px",
+    "summary": {
+      "x": 227.5,
+      "y": 1949.59375,
+      "width": 462,
+      "height": 14
+    },
+    "menuButton": {
+      "x": 0,
+      "y": 0,
+      "width": 0,
+      "height": 0
+    },
+    "heroIcon": {
+      "x": 257.1875,
+      "y": 723.875,
+      "width": 32,
+      "height": 32
+    },
+    "canvas": 0,
+    "animations": 12
+  }
+]

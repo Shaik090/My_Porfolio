@@ -21,6 +21,7 @@ export function ScrollProgress() {
 export function RevealController() {
   useEffect(() => {
     const media = window.matchMedia('(prefers-reduced-motion: reduce)');
+    const compact = window.matchMedia('(max-width: 1050px)');
     let observer: IntersectionObserver | undefined;
     const nodes = Array.from(document.querySelectorAll<HTMLElement>([
       '.section-heading', '.about-copy > p', '.about-portrait', '.about-values > div',
@@ -49,7 +50,7 @@ export function RevealController() {
         // Keep the initial viewport readable and replay entrances after content leaves view.
         const siblings = Array.from(node.parentElement?.children || []);
         const index = Math.max(0, siblings.indexOf(node));
-        node.style.setProperty('--reveal-delay', `${Math.min(index, 4) * 80}ms`);
+        node.style.setProperty('--reveal-delay', `${Math.min(index, 4) * (compact.matches ? 45 : 80)}ms`);
         node.dataset.reveal = node.classList.contains('project-card') ? 'project' : 'content';
         const bounds = node.getBoundingClientRect();
         node.classList.toggle('is-visible', bounds.top < window.innerHeight - 24 && bounds.bottom > 0);
@@ -62,11 +63,13 @@ export function RevealController() {
     };
     setup();
     media.addEventListener('change', setup);
+    compact.addEventListener('change', setup);
     document.addEventListener('focusin', onFocus);
     window.addEventListener('beforeprint', showAll);
     return () => {
       observer?.disconnect();
       media.removeEventListener('change', setup);
+      compact.removeEventListener('change', setup);
       document.removeEventListener('focusin', onFocus);
       window.removeEventListener('beforeprint', showAll);
       nodes.forEach(node => { delete node.dataset.reveal; node.style.removeProperty('--reveal-delay'); });
@@ -89,16 +92,16 @@ function useClientReducedMotion() {
 }
 
 const subscribeSmall = (callback: () => void) => {
-  const query = window.matchMedia('(max-width: 760px), (pointer: coarse)');
+  const query = window.matchMedia('(max-width: 1050px), (pointer: coarse)');
   query.addEventListener('change', callback);
   return () => query.removeEventListener('change', callback);
 };
-const getSmall = () => window.matchMedia('(max-width: 760px), (pointer: coarse)').matches;
+const getSmall = () => window.matchMedia('(max-width: 1050px), (pointer: coarse)').matches;
 const getServerSmall = () => false;
 function useScrollIntensity() {
   const small = useSyncExternalStore(subscribeSmall, getSmall, getServerSmall);
   const reduced = useClientReducedMotion();
-  return { reduced, intensity: small ? 0.35 : 1 };
+  return { reduced, intensity: small ? 0 : 1 };
 }
 
 /** Separate layer keeps the entrance animation and all heading text independent. */
@@ -135,7 +138,7 @@ export function HeroScrollVisual({ target, children }: { target: RefObject<HTMLE
   return <m.div ref={surface} className="hero-scroll-layer" onPointerEnter={enter} onPointerMove={move} onPointerLeave={reset} onPointerCancel={reset} style={{ y: reduced ? 0 : y, scale: reduced ? 1 : scale, opacity: reduced ? 1 : opacity }}>
     <m.div className="hero-scroll-glow" style={{ y: reduced ? 0 : glowY }} aria-hidden="true" />
     <m.div className="hero-depth-scene" style={{ rotateX: reduced ? 0 : rotateX, rotateY: reduced ? 0 : rotateY, transformPerspective: 1100 }}>
-      <div className="hero-ambient-rig" data-animate={inView && !reduced}>
+      <div className="hero-ambient-rig" data-animate={inView && !reduced && intensity === 1} data-orbit-animate={inView && !reduced}>
       <m.span className="hero-reactive-light" style={{x:reduced?0:sheenX,y:reduced?0:sheenY}} aria-hidden="true"/>
       <span className="hero-floor-ring" aria-hidden="true" />
       <span className="hero-depth-ring" aria-hidden="true" />

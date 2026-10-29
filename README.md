@@ -32,7 +32,7 @@ npm run build
 npm run start
 ```
 
-Stop development servers using this checkout before building: concurrent development and production builds share `.next` and can conflict. Use `npm run start` after a successful build; `npm run dev` is for development.
+Development assets use `.next-dev`; production builds use `.next`, so building does not overwrite a running development server's CSS or JavaScript. Run only one development server per checkout. `npm run dev` uses port 3000 explicitly and fails if that port is already occupied. Use `npm run start` after a successful build; `npm run dev` is for development.
 
 ## Deploy to Hostinger
 
@@ -123,13 +123,16 @@ Both screenshot viewers open as popups, with navigation, thumbnails, keyboard co
 | `src/data/cafe-flex-screenshots.ts` | Cafe Flex screenshot metadata |
 | `src/app/globals.css` | Layout, theme, responsive styles |
 | `src/app/motion.css` | Motion effects and reduced-motion behavior |
+| `src/app/responsive.css` | Mobile/tablet composition, touch targets, type and simplified motion |
 | `src/app/layout.tsx` | Page title and metadata |
 | `src/app/icon.svg` | Browser icon and export source |
 | `public/resume.pdf` | Downloadable one-page, selectable-text resume |
 | `scripts/build_resume.py` | Resume generation source |
 | `output/logo/` | Profile PNG, transparent PNG, and SVG logo downloads |
 
-The active hero uses the portrait/orbit composition in `Portfolio.tsx`, not the experimental Three.js workspace under `src/components/hero/`. Active portraits are `nowman-hero-face-v2.png` and `nowman-about-face-v2.png`: AI-styled edits based on the supplied photo, not pixel-identical originals. The original photo remains separately retained.
+The active hero uses the portrait/orbit composition in `Portfolio.tsx`, not the experimental Three.js workspace under `src/components/hero/`. Desktop portraits are `nowman-hero-face-v2.png` and `nowman-about-face-v2.png`: AI-styled edits based on the supplied photo, not pixel-identical originals. Mobile/tablet layouts use smaller WebP derivatives (`nowman-hero-mobile.webp` and `nowman-about-mobile.webp`) of those same approved assets. The original photo remains separately retained.
+
+Through 1050px, navigation uses a compact header with the resume inside its menu, skill badges orbit the portrait within the screen, and decorative parallax is disabled. On phones, the portrait appears above the introduction with compact versions of the desktop handwritten note, decorative code panel and project/development/graduation stats card. The orbit pauses offscreen and becomes static with reduced motion. Project cards stack through 900px. BillSahi's larger viewer offers a mobile zoom-and-pan control. See the [mobile responsive audit](mobile-responsive-audit.md) for findings, the tested viewport matrix and verification limits.
 
 The site supports reduced motion and repeatable viewport reveals. External Google Fonts have system fallbacks. Footer branding remains, while duplicate footer navigation has been removed.
 

@@ -1,0 +1,71 @@
+Shaik Mohammad
+Nowman
+SOFTWARE DEVELOPER
+Web & Mobile Applications
+Contact
+Location
+Andhra Pradesh, India
+LinkedIn
+LinkedIn profile
+Email
+shaiknowman99@gmail.com
+Education
+B.Tech - Computer Science &
+Engineering
+Rajeev Gandhi Memorial College
+of Engineering, Nandyal
+2025 | CGPA: 7.44
+Intermediate - MPC
+Narayana Junior College, Tirupati
+2018 | 94.7%
+SSC / Class 10
+Viswa Bharathi High School,
+Punganur
+2016 | CGPA: 8.2
+Technical Skills
+Languages
+Java, Python, JavaScript,
+TypeScript, SQL
+Frontend
+React.js, Next.js, HTML5, CSS3,
+EJS
+Backend & Database
+Node.js, Express.js, REST APIs,
+MongoDB
+Tools
+Git, GitHub, VS Code, npm,
+Android Emulator, ADB, Render;
+AI-assisted development
+Testing
+Functional testing
+Professional Summary
+Computer Science graduate with project experience building web and
+Android applications using Next.js, TypeScript, Node.js and MongoDB.
+Develops practical workflows, integrates REST APIs and performs functional
+testing. Seeking an entry-level software development opportunity.
+Projects
+BillSahi | Business Management Software
+Next.js, TypeScript, MongoDB, React Native
+ Developed web and Android applications to support daily business
+operations.
+Defined user-scoped MongoDB indexes for stock and sales queries, with
+unique invoice numbers per user.
+Desktop application is under development.
+Cafe Flex | Cafe Management
+React Native, Android, Local Wi-Fi
+ Built an Android POS with TCP-based local networking, heartbeat checks
+and capped reconnection backoff.
+Persisted pending staff commands locally and flushed the queue after
+reconnecting.
+Personal Portfolio | nowman.site
+Next.js, React.js, TypeScript, CSS
+ Designed and built a responsive developer portfolio to showcase projects,
+technical skills, education and certifications.
+Created interactive project cards, mobile navigation and a downloadable
+resume.
+Portfolio: https://nowman.site
+Certifications
+Full Stack Development
+Apna College
+Python for Beginners
+Cisco Networking Academy

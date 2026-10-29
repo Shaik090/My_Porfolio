@@ -1,0 +1,14 @@
+﻿const fs=require('node:fs/promises');const path=require('node:path');const sharp=require('sharp');
+const generated='C:/Users/DELL/.codex/generated_images/01a17783-8ad3-74a2-b145-6db395643188';
+const selections=[['171922','dashboard','exec-10342034-cbdf-4e18-979b-1ab0ac5803f8.png'],['172013','inventory','exec-fba037cf-9541-4ea7-8230-2d5b2fe74847.png'],['172138','retail-pos','exec-f7269d62-b55c-496b-9ba6-dddf677b2107.png'],['172424','purchase-history','exec-889ad978-213f-45c5-a91e-26d5657b2716.png'],['172755','product-reports','exec-d3583981-ad70-4eca-a901-c586f459b573.png']];
+(async()=>{const out='public/images/projects/billsahi';await fs.mkdir(out,{recursive:true});for(const [time,name,edit]of selections){const input=`C:/Users/DELL/OneDrive/Pictures/Screenshots 1/BillSahi/Screenshot 2026-10-28 ${time}.png`;const original=await sharp(input).removeAlpha().raw().toBuffer({resolveWithObject:true});const {width,height,channels}=original.info;const cleaned=await sharp(path.join(generated,edit)).metadata();if(!cleaned.width)throw Error('Missing edited cleanup asset');const pixels=Buffer.from(original.data);let changed=0;
+// Use only the edited watermark pixels. Keep the actual screenshot everywhere else,
+// including all application text, numbers and dimensions; generated UI is discarded.
+for(let y=height-105;y<height-47;y++)for(let x=1548;x<1842;x++){const offset=(y*width+x)*channels;const rgb=[...pixels.subarray(offset,offset+3)];const max=Math.max(...rgb),min=Math.min(...rgb);if(min>150&&max<255&&max-min<18){// Match the cleaned overlay to the untouched flat row background to avoid
+// faint seams from the image editor's resampling. All source text stays intact.
+const background=(y*width+(name==='retail-pos'?1846:1435))*channels;
+for(let c=0;c<3;c++)pixels[offset+c]=original.data[background+c];
+changed++;}}
+// Explicit privacy redaction, restricted to the account email line.
+const emailTop=height-61;for(let y=emailTop;y<emailTop+21;y++)for(let x=88;x<265;x++){const o=(y*width+x)*channels;pixels[o]=35;pixels[o+1]=46;pixels[o+2]=61;}
+const image=sharp(pixels,{raw:{width,height,channels}});await image.clone().webp({lossless:true}).toFile(`${out}/${name}.webp`);await image.clone().resize({width:280}).webp({quality:80}).toFile(`${out}/${name}-thumb.webp`);let outside=0;for(let y=0;y<height;y++)for(let x=0;x<width;x++){if((x>=1548&&x<1842&&y>=height-105&&y<height-47)||(x>=88&&x<265&&y>=emailTop&&y<emailTop+21))continue;const o=(y*width+x)*channels;if(!pixels.subarray(o,o+3).equals(original.data.subarray(o,o+3)))outside++;}if(outside)throw Error(`Unexpected application changes in ${name}`);console.log(`${name}: ${width}x${height}, ${changed} overlay pixels cleaned, no changes outside cleanup/redaction regions`);}})().catch(e=>{console.error(e);process.exitCode=1});
